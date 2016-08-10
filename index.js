@@ -1,6 +1,6 @@
 var cool = require('cool-ascii-faces');
 var opbeat = require('opbeat').start()
-
+var pg = require('pg');
 var express = require('express');
 var app = express();
 
@@ -17,6 +17,10 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+app.get('/league', function(request, response) {
+  response.render('pages/league');
+});
+
 app.get('/cool', function(request, response) {
     response.send(cool());
 });
@@ -28,8 +32,6 @@ app.get('/times', function(request, response) {
         result += i + '';
     response.send(result);
 });
-
-var pg = require('pg');
 
 app.get('/db', function (request, response) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
