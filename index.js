@@ -17,9 +17,9 @@ app.get('/', function(request, response) {
   response.render('pages/login');
 });
 
-app.get('/league', function(request, response) {
-  response.render('pages/league');
-});
+//app.get('/league', function(request, response) {
+//  response.render('pages/league', {columns: 3});
+//});
 
 app.get('/cool', function(request, response) {
     response.send(cool());
@@ -33,14 +33,14 @@ app.get('/times', function(request, response) {
     response.send(result);
 });
 
-app.get('/db', function (request, response) {
+app.get('/league', function (request, response) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        client.query('SELECT * FROM test_table', function(err, result) {
+        client.query('SELECT * FROM leagues', function(err, result) {
            done();
            if (err)
             { console.error(err); response.send("Error " + err); }
            else
-            { response.render('pages/db', {results: result.rows} ); }
+            { response.render('pages/league', {results: result.rows} ); }
         });
     });
 });
