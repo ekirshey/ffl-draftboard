@@ -20,17 +20,17 @@
             <thead>
                 <tr>
                     <% for(var i=0; i<r.draft_rounds; i++) { %>
-                        <th>Round <%= i %></th>
+                        <th>Round <%= i+1 %></th>
                     <% } %>
 
                 </tr>
             </thead>
             <tbody>
-                <% for(var i=0; i<num_teams; i++) { %>
+                <% for(var i=0; i<r.num_teams; i++) { %>
                     <tr>
-                        <td><%= i %></td>
-                        <td><%= i %></td> 
-                        <td><%= i %></td>
+                    <% for(var j=0; j<r.draft_rounds; j++) { %>
+                            <td><%= j %></td>
+                    <% } %>
                     </tr>
                 <% } %>
             </tbody>
